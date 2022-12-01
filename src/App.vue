@@ -1,47 +1,40 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
+  <!-- 리스트의 경우 -->
+  <!-- <div v-for="item in items">
+  hi  {{item}}
+  </div> -->
 
-  <main>
-    <TheWelcome />
-  </main>
+  <!-- object의 경우 -->
+  <div v-for="(value, key) in items">
+    {{ value }}
+    {{ key }}
+  </div>
+  <div v-for="item in items" :key="item.id">
+    {{ item }}
+  
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
+<script>
+// import {reactive} from 'vue';
+import { reactive } from 'vue';
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+  export default {
+    setup(){
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+      // list의 경우
+      // const items = reactive([1,2,3,4,5,6])
+
+      // object의 경우
+      const items = reactive({ id:1,a:"1" },{ id:2, b:"2" },{ id:3, c:"3"})
+      return { items }
+    }
+ 
   }
+</script>
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+<style lang="scss" scoped>
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
 </style>
